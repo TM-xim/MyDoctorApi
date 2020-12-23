@@ -15,8 +15,10 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedule', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('doctorId')->unsigned();
             $table->foreign('doctorId')->references('id')->on('doctor');
-            $table->foreign('patientId')->references('id')->on('patient')->nullable();
+            $table->bigInteger('patientId')->nullable()->unsigned();
+            $table->foreign('patientId')->references('id')->on('patient');
             $table->date('start');
             $table->date('end');
         });
