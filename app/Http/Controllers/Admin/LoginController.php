@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    protected $redirectTo = 'admin.home';
+
     public function login(Request $request)
     {
         if (Auth::guard('admin')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
-            return redirect()->route('admin.home'); 
-        } 
-        else {
-            dd('coucou');
+            $request->session()->regenerate();
+            return redirect()->intended('admin.home'); 
         }
     }
 

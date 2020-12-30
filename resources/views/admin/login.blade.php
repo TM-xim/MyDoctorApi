@@ -20,11 +20,11 @@
                 @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Adresse email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="email">
+                        <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-warning" type="submit">Valider</button>
