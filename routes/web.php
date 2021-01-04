@@ -20,5 +20,9 @@ Route::get('/', function () {
 Route::get('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'index'])->name('admin.login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
-Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
-
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin/admins', [App\Http\Controllers\Admin\AdminsController::class, 'index'])->name('admin.admins');
+    Route::get('/admin/admins/add', [App\Http\Controllers\Admin\AdminsController::class, 'add'])->name('admin.addAdmin');
+    Route::post('/admin/admins/add', [App\Http\Controllers\Admin\AdminsController::class, 'create'])->name('admin.addAdmin');
+    Route::get('/admin/admins/edit/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'edit'])->name('admin.editAdmin');
+});

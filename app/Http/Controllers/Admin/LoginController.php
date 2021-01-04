@@ -16,7 +16,7 @@ class LoginController extends Controller
     {
         if (Auth::guard('admin')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
             $request->session()->regenerate();
-            return redirect()->intended('admin.home'); 
+            return redirect()->route('admin.admins'); 
         }
     }
 
