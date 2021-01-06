@@ -1,12 +1,12 @@
-@extends('layouts.admin')
+@extends('layouts.doctor')
 
 @section('title')
-<h2>Admins</h2>
+<h2>Doctor</h2>
 @endsection
 
 @section('content')
     <div class="container-fluid">
-                <h5 class="card-title">Ajouter un administrateur</h5>
+                <h5 class="card-title">Ajouter un créneau</h5>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -19,20 +19,16 @@
                 <form method="POST" action="{{ route('admin.addAdmin') }}">
                 @csrf
                     <div class="mb-3">
-                        <label for="lastName" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="lastName" aria-describedby="lastName" name="lastName" value="{{old('lastName')}}" required>
+                    <label for="start">Date:</label>
+                    <input type="date" id="date" name="date">
                     </div>
                     <div class="mb-3">
-                        <label for="firstName" class="form-label">Prénom</label>
+                        <label for="firstName" class="form-label">Début</label>
                         <input type="text" class="form-control" id="firstName" aria-describedby="firstName" name="firstName" value="{{old('firstName')}}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Adresse email</label>
+                        <label for="email" class="form-label">Fin</label>
                         <input type="email" class="form-control" id="email" aria-describedby="email" name="email" value="{{old('email')}}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}" required>
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-warning" type="submit">Créer</button>

@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>Admin home</title>
+    <title>Doctor home</title>
   </head>
   <body>
     <main>
@@ -19,26 +19,16 @@
                 <img src="{{ URL::to('/img/mydoctor.png') }}" alt="mydoctor" width="250" height="150">
               </div>
               <div class="d-flex justify-content-center">
-                  <h3 class="text-white">Administration</h3>
+                  <h3 class="text-white">Doctor</h3>
               </div>
               <div class="card border-0 rounded-0 bg-info">
                 <div class="card-body">
-                  <p><a href="{{route('admin.admins')}}">Admin</a></p>
+                  <p><a href="{{ route('doctor.editDoctor')}}">Ma fiche</a></p>
                 </div>
               </div>
               <div class="card border-0 rounded-0 bg-info">
                 <div class="card-body">
-                <p><a href="{{route('admin.doctors')}}">Docteur</a></p>
-                </div>
-              </div>
-              <div class="card border-0 rounded-0 bg-info">
-                <div class="card-body">
-                  <p>Menu 3</p>
-                </div>
-              </div>
-              <div class="card border-0 rounded-0 bg-info">
-                <div class="card-body">
-                  <p>Menu 4</p>
+                <p><a href="{{ route('doctor.list')}}">Agenda</a></p>
                 </div>
               </div>
           </div>

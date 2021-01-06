@@ -14,7 +14,7 @@ class AdminsController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     
     public function index()
@@ -31,7 +31,7 @@ class AdminsController extends Controller
             return redirect()->route('admin.admins');
         }
 
-        return view('admin.edit', ['admin' => $admin]);
+        return view('admin.admins.edit', ['admin' => $admin]);
     }
 
     public function add()
@@ -39,9 +39,51 @@ class AdminsController extends Controller
         return view('admin.admins.add');
     }
 
+    public function delete($id)
+    {
+        $admin = Admin::find($id);
+
+        if ($admin == null) {
+            return redirect()->route('admin.admins');
+        }
+
+        return view('admin.admins.delete', ['admin' => $admin]); 
+    }
+
     public function update($id, Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|email',
+            'password' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.editAdmin')
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+            $admin = Admin::find($id);
+
+            if ($admin == null) {
+                return redirect()->route('admin.admins');
+            }
+
+            $admin->firstName = $request->firstName;
+            $admin->lastName = $request->lastName;
+            $admin->email = $request->email;
+
+            if ($request->filled('password')) {
+                $admin->password  = Hash::make($request->password);
+            }
+
+            $admin->save();
+
+            return redirect()->route('admin.admins')
+                ->with(['successful_message' => 'Profile updated successfully']);
+        }
     }
 
     public function create(Request $request)
@@ -65,7 +107,17 @@ class AdminsController extends Controller
             $admin->password  = Hash::make($request->password);
             $admin->save();
 
-            return redirect()->route('admin.admins');
+            return redirect()->route('admin.admins')
+                ->with(['successful_message' => 'Profile created successfully']);
         }
+    }
+
+    public function destroy($id)
+    {
+        $admin = Admin::find($id);
+        $admin->delete();
+
+        return redirect()->route('admin.admins')
+            ->with(['successful_message' => 'Profile deleted successfully']);
     }
 }
