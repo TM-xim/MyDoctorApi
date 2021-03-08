@@ -7,55 +7,60 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="{{asset('css/doctor/style.css')}}" rel="stylesheet" >
 
     <title>Doctor home</title>
   </head>
   <body>
-    <main>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-3 bg-info p-0">
-              <div class="d-flex justify-content-center">
-                <img src="{{ URL::to('/img/mydoctor.png') }}" alt="mydoctor" width="250" height="150">
-              </div>
-              <div class="d-flex justify-content-center">
-                  <h3 class="text-white">Doctor</h3>
-              </div>
-              <div class="card border-0 rounded-0 bg-info">
-                <div class="card-body">
-                  <p><a href="{{ route('doctor.editDoctor')}}">Ma fiche</a></p>
+    <div class="wrapper">
+      <div class="sidebar" data-background-color="white">
+        <div class="logo">
+          <a class="image">
+            <img src="{{ URL::to('/img/mydoctor.png') }}" alt="mydoctor" width="150" height="50">
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="{{config('global.active_tab') == 'me' ? 'active' : ''}}">
+              <a href="{{ route('doctor.editDoctor')}}" class="nav-link">
+                <div class="nav-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle mr-4" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                  <p>Ma fiche</p>
                 </div>
-              </div>
-              <div class="card border-0 rounded-0 bg-info">
-                <div class="card-body">
-                <p><a href="{{ route('doctor.list')}}">Agenda</a></p>
-                </div>
-              </div>
-          </div>
-          <div class="col-9 bg-secondary">
-            <div class="row">
-              <div class="d-flex justify-content-end">
-                {{ Auth::user()->firstName }}
-                {{ Auth::user()->lastName }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power mt-1" viewBox="0 0 16 16">
-                  <path d="M7.5 1v7h1V1h-1z"/>
-                  <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+              </a>
+            </li>
+            <li class="{{config('global.active_tab') == 'agenda' ? 'active' : ''}}">
+              <a href="{{ route('doctor.list')}}" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                  <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                 </svg>
-              </div>
-              <div class="d-flex justify-content-end">
-                {{ Auth::user()->email }}
-              </div>
-              <div class="bg-white p-1 m-1">
-                @yield('title')
-              </div>
-              <div class="bg-white p-1 m-2">
-                @yield('content')
-              </div>
+                <p>Agenda</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="background-image">
+        </div>
+      </div>
+      <div class="main-panel">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              @yield('title')
             </div>
+          </div>
+        </nav>
+        <div class="content">
+          <div class="container-fluid">
+            @yield('content')
           </div>
         </div>
       </div>
-    </main>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>
 </html>

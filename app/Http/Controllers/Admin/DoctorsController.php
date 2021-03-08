@@ -21,6 +21,7 @@ class DoctorsController extends Controller
     
     public function index()
     {
+        config(['global.active_tab' => 'doctors']);
         $doctors = Doctor::get();
         return view('admin.doctors.list', ['doctors' => $doctors]); 
     }

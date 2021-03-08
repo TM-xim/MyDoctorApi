@@ -19,6 +19,7 @@ class AdminsController extends Controller
     
     public function index()
     {
+        config(['global.active_tab' => 'admins']);
         $admins = Admin::get();
         return view('admin.admins.list', ['admins' => $admins]); 
     }

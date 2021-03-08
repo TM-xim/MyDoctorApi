@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Doctor;
+use App\Models\Schedule;
 
 class DoctorController extends Controller
 {
@@ -19,12 +20,15 @@ class DoctorController extends Controller
 
     public function edit()
     {
+        config(['global.active_tab' => 'me']);
         return view('doctor.me');
     }
 
     public function list()
     {
-        return view('doctor.list');
+        config(['global.active_tab' => 'agenda']);
+        $schedules = Schedule::get();
+        return view('doctor.list', ['schedules' => $schedules]);
     }
 
     public function update(Request $request)

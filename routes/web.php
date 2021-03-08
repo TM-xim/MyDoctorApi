@@ -46,4 +46,9 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::put('/doctor/me/', [App\Http\Controllers\Doctor\DoctorController::class, 'update'])->name('doctor.editDoctor');
     Route::get('/doctor/agenda', [App\Http\Controllers\Doctor\DoctorController::class, 'list'])->name('doctor.list');
     Route::get('/doctor/agenda/createSchedule', [App\Http\Controllers\Doctor\SchedulesController::class, 'add'])->name('doctor.schedule.add');
+    Route::post('/doctor/agenda/createSchedule', [App\Http\Controllers\Doctor\SchedulesController::class, 'create'])->name('doctor.schedule.add');
+    Route::get('/doctor/agenda/edit/{scheduleId}', [App\Http\Controllers\Doctor\SchedulesController::class, 'edit'])->name('doctor.schedule.edit');
+    Route::put('/doctor/agenda/edit/{scheduleId}', [App\Http\Controllers\Doctor\SchedulesController::class, 'update'])->name('doctor.schedule.edit');
+    Route::get('/doctor/agenda/{scheduleId}/delete', [App\Http\Controllers\Doctor\SchedulesController::class, 'delete'])->name('doctor.schedule.delete');
+    Route::delete('/doctor/agenda/{scheduleId}/delete', [App\Http\Controllers\Doctor\SchedulesController::class, 'destroy'])->name('doctor.schedule.delete');
 });

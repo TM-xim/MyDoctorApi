@@ -1,0 +1,125 @@
+.wrapper {
+	position: relative;
+	top: 0;
+	height: 100vh;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 260px;
+	background: #fff;
+	box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
+    z-index: 2;
+}
+
+.sidebar .logo {
+    z-index: 4;
+	padding: 15px 0;
+	margin: 0;
+	display: block;
+	position: relative;
+}
+
+.sidebar .logo .image {
+	padding: 5px 0;
+	text-align: center;
+	display: block;
+}
+
+.sidebar .logo::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	right: 15px;
+	height: 1px;
+	width: calc(100% - 30px);
+	background-color: hsla(0,0%,71%,.3);
+}
+
+.sidebar .sidebar-wrapper {
+    z-index: 4;
+	position: relative;
+	height: calc(100vh - 75px);
+	width: 260px;
+	padding-bottom: 30px;
+}
+
+.sidebar .nav {
+	margin-top: 20px;
+	display: block;
+}
+
+.sidebar li.active > a{
+	background-color: #949de9;
+	box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(111, 103, 226, 0.4);
+}
+
+.nav-link {
+    display: block;
+    text-align: center;
+}
+
+.sidebar .nav svg {
+    float: left;
+    width: 30px;
+}
+
+.sidebar .nav li .dropdown-menu a, .sidebar .nav li a {
+	margin: 10px 15px 0;
+	color: #3c4858;
+	font-size: 13px;
+	padding: 10px 15px;
+    display: block;
+    align-items: center;
+}
+
+.background-image{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50%;
+    background-image: url(../../img/sidebar-1.jpg);
+}
+
+.background-image::after {
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	content: "";
+	display: block;
+	background: #fff;
+	opacity: .93;
+}
+
+.main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    background-color: #e7eaee;
+}
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.navbar .navbar-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.content {
+    margin-top: 70px;
+    padding: 30px 15px;
+    min-height: calc(100vh - 50px);
+}
